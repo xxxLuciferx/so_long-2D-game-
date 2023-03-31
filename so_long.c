@@ -58,19 +58,14 @@ void	check_all_map(t_tools *map)
 {
 	int i;
 	int j;
-	int size;
 	
 	i = 0;
-	size = 0;
-	while (map->tab[0][size] != '\0')
-		size++;
-	size--;
 	while (map->tab[i])
 	{
 		j = 0;
 		while(map->tab[i][j] != '\0')
 		{
-			if(map->tab[0][j] != '1' || map->tab[i][0] != '1' || map->tab[map->line_counter - 1][j] == '1' || map->tab[size][i] != '1')
+			if(map->tab[0][j] != '1' || map->tab[i][0] != '1' || map->tab[map->line_counter - 1][j] != '1' || map->tab[map->line_counter - 1][i] != '1')
 				free_tab(map);
 			j++;
 		}
