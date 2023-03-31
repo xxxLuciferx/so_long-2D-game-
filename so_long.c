@@ -13,75 +13,79 @@
 #include "library.h"
 
 
-void	free_tab(t_tools *tools)
+void	free_map(t_tools *map)
 {
 	int i;
 
 	i = 0;
-	while(tools->tab[i])
+	while(map->tab[i])
 	{
-		free(tools->tab[i]);
+		free(map->tab[i]);
 		i++;
 	}
-	free(tools->tab);
-	printf("bzzz\n");
+	free(map->tab);
+	write(1, "Error in map\n", 13);
 	exit(1);
 }
 
-// void	check_error_map(t_tools *tools)
-// {
-// 	int i;
-// 	int j;
-	
-// 	i = 0;
-// 	j = 0;
-// 	while(tools->tab[i][j] != '\n')
-// 	{
-// 		if(tools->tab[i][j] != '1')
-// 		{
-// 			free_tab(tools);
-// 			write(1, "Error in map\n", 13);
-// 			exit (1);
-// 		}
-// 		j++;
-// 	}
-// 	tools->lenght_counter = j;
-// 	j = -1;
-// 	while(tools->tab[i][j] != '\n')
-// 	{
-// 		j = j + 1;
-		
-// 	}
-// }
-
-void	check_all_map(t_tools *map)
+int	valid_path(t_tools *map, int y, int x)
+{
+	if(map->tab[x][y] == 'E')
+		return 1;
+	if((map->tab[y - 1][x] == '0' || map->tab[y - 1][x] == 'C') && map->tab[y - 1][x] != '\0')
+		valid_path(map, y - 1, x);
+	if((map->tab[y + 1][x] == '0' || map->tab[y + 1][x] == 'C') && map->tab[y + 1][x] != '\0')
+		valid_path(map, y + 1, x);
+	if((map->tab[y][x - 1] == '0' || map->tab[y][x - 1] == 'C') && map->tab[y][x - 1] != '\0')
+		valid_path(map, y, x - 1);
+	if((map->tab[y][x + 1] == '0' || map->tab[y][x + 1] == 'C') && map->tab[y][x + 1] != '\0')
+		valid_path(map, y, x + 1);
+	return 0;
+}
+void	check_map(t_tools *map)
 {
 	int i;
 	int j;
 	
 	i = 0;
+	map->coin = 0;
+	map->exit = 0;
+	map->player = 0;
 	while (map->tab[i])
 	{
 		j = 0;
 		while(map->tab[i][j] != '\0')
 		{
 			if(map->tab[0][j] != '1' || map->tab[i][0] != '1' || map->tab[map->line_counter - 1][j] != '1' || map->tab[map->line_counter - 1][i] != '1')
-				free_tab(map);
+				free_map(map);
 			j++;
+			if(map->tab[i][j] == 'C')
+				map->coin++;
+			if(map->tab[i][j] == 'P')
+			{
+				map->y = i;
+				map->x = j;
+				map->player++;
+			}
+			if(map->tab[i][j] == 'E')
+				map->exit++;
 		}
 		i++;
 	}
-	
-	
+	if(map->player != 1 || map->coin < 1 || map->exit != 1)
+		free_map(map);
+	printf("%d, %d", map->x, map->y);
+	// if(valid_path(map, map->y, map->x))
+	// {
+	// 	printf("nik\n");
+	// }
 }
 
 int main(int argc, char **argv)
 {
-
 	int	fd;
 	t_tools *map;
 	char *line;
-
 
 	(void)argv;
 	(void)argc;
@@ -98,6 +102,14 @@ int main(int argc, char **argv)
 		map->line_counter++;
 	}
 	map->tab = ft_split(map->str, '\n');
+	
+	check_map(map);
+	// printf("player : %d | coin : %d | exit : %d", map->player, map->coin, map->exit);
+
+
+	
+}
+	// check_error_map(map);
 	// int i = 0;
 	// int j;
 	// while (map->tab[i])
@@ -111,9 +123,3 @@ int main(int argc, char **argv)
 	// 	// printf("\n");
 	// 	i++;
 	// }
-	
-	check_all_map(map);
-	// check_error_map(map);
-
-	
-}

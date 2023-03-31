@@ -24,6 +24,8 @@
 
 typedef struct s_tools
 {
+	int x;
+	int y;
 	char	*str;
 	char	**tab;
 	int		line_counter;
