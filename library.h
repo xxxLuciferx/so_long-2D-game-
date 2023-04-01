@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:40:19 by khaimer           #+#    #+#             */
-/*   Updated: 2023/03/31 20:16:43 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/04/01 22:33:19 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ char	*invalid_fd(char *string, char **static_string);
 //SPLIT
 char	**ft_split(char const *s, char c);
 
-
+int		valid_path(t_tools *map, int y, int x);
+void	valid_path_recursive(t_tools *map, int y, int x);
+void	valid_map_name(int argc, char **argv);
+void	free_map(t_tools *map);
 
 
 #endif
