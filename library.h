@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:40:19 by khaimer           #+#    #+#             */
-/*   Updated: 2023/03/30 21:17:35 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/03/31 20:16:43 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef struct s_tools
 	int y;
 	char	*str;
 	char	**tab;
-	int		line_counter;
+	int		line;
+	int		length;
 	int		coin;
 	int		player;
 	int		exit;	
