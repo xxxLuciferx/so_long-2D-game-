@@ -6,47 +6,12 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:35:38 by khaimer           #+#    #+#             */
-/*   Updated: 2023/04/01 22:34:42 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/04/02 17:23:38 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "library.h"
-void	valid_path_recursive(t_tools *map, int y, int x)
-{
-	valid_path(map, y, x - 1);
-	valid_path(map, y, x + 1);
-	valid_path(map, y + 1, x);
-	valid_path(map, y - 1, x);
-}
 
-int	valid_path(t_tools *map, int y, int x)
-{
-	if(map->tab[y][x] == 'P')
-	{
-		map->tab[y][x] = '1';
-		valid_path_recursive(map, y, x);
-	}
-	if(map->tab[y][x] == 'E')
-	{
-		map->exit--;
-		map->tab[y][x] = '1';
-		valid_path_recursive(map, y, x);
-	}
-	else if(map->tab[y][x] == '0')
-	{
-		map->tab[y][x] = '1';
-		valid_path_recursive(map, y, x);
-	}
-	else if(map->tab[y][x] == 'C')
-	{
-		map->coin--;
-		map->tab[y][x] = '1';
-		valid_path_recursive(map, y, x);
-	}
-	if(map->coin == 0 && map->exit == 0)
-		return 1;
-	return 0;
-}
 
 void	check_map(t_tools *map)
 {
@@ -54,10 +19,6 @@ void	check_map(t_tools *map)
 	int j;
 	
 	i = 0;
-	map->coin = 0;
-	map->exit = 0;
-	map->player = 0;
-	map->length = 0;
 	while (map->tab[map->line - 1][map->length] != '\0')
 		map->length++;
 	while (map->tab[i])
@@ -107,8 +68,14 @@ int main(int argc, char **argv)
 
 	map = calloc(1, sizeof(t_tools));
 	map->line = 0;
+	map->coin = 0;
+	map->exit = 0;
+	map->player = 0;
+	map->length = 0;
 	valid_map_name(argc, argv);
 	fd = open(argv[1], O_RDONLY);
+	if(fd < 0)
+		exit(1);
 	while (1)
 	{
 		line = get_next_line(fd);

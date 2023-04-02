@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 21:10:06 by khaimer           #+#    #+#             */
-/*   Updated: 2023/04/01 22:33:39 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/04/02 17:15:38 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,41 @@ void	free_map(t_tools *map)
 	}
 	write(1, "Error in map\n", 13);
 	exit(1);
+}
+
+void	valid_path_recursive(t_tools *map, int y, int x)
+{
+	valid_path(map, y, x - 1);
+	valid_path(map, y, x + 1);
+	valid_path(map, y + 1, x);
+	valid_path(map, y - 1, x);
+}
+
+int	valid_path(t_tools *map, int y, int x)
+{
+	if(map->tab[y][x] == 'P')
+	{
+		map->tab[y][x] = '1';
+		valid_path_recursive(map, y, x);
+	}
+	if(map->tab[y][x] == 'E')
+	{
+		map->exit--;
+		map->tab[y][x] = '1';
+		valid_path_recursive(map, y, x);
+	}
+	else if(map->tab[y][x] == '0')
+	{
+		map->tab[y][x] = '1';
+		valid_path_recursive(map, y, x);
+	}
+	else if(map->tab[y][x] == 'C')
+	{
+		map->coin--;
+		map->tab[y][x] = '1';
+		valid_path_recursive(map, y, x);
+	}
+	if(map->coin == 0 && map->exit == 0)
+		return 1;
+	return 0;
 }
