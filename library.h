@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:40:19 by khaimer           #+#    #+#             */
-/*   Updated: 2023/04/01 22:33:19 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/04/06 23:24:09 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,17 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <mlx.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
 # endif
+
+
+#define KEY_UP 126
+#define KEY_DOWN 125
+#define KEY_RIGHT 124
+#define KEY_LEFT 123
 
 typedef struct s_tools
 {
@@ -28,11 +35,22 @@ typedef struct s_tools
 	int y;
 	char	*str;
 	char	**tab;
+	char	**land;
 	int		line;
 	int		length;
 	int		coin;
 	int		player;
 	int		exit;	
+	
+	void	*mlx;
+	void	*img_exit;
+	void	*mlx_win;
+	void	*img_wall;
+	void	*img_coin;
+	void	*img_player;
+	int		img_width;
+	int		img_height;
+	
 }t_tools;
 
 //GET_NEX_LINE
