@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:40:19 by khaimer           #+#    #+#             */
-/*   Updated: 2023/04/06 23:24:09 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/04/10 20:44:41 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,17 @@ typedef struct s_tools
 	char	**land;
 	int		line;
 	int		length;
-	int		coin;
 	int		player;
+	int		coin_checker;
+	int		coin;
 	int		exit;	
 	
 	void	*mlx;
-	void	*img_exit;
 	void	*mlx_win;
 	void	*img_wall;
 	void	*img_coin;
 	void	*img_player;
+	void	*img_exit;
 	int		img_width;
 	int		img_height;
 	

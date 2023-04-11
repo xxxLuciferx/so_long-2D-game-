@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 21:10:06 by khaimer           #+#    #+#             */
-/*   Updated: 2023/04/03 17:54:38 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/04/10 20:43:19 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	valid_map_name(int argc, char **argv)
 	}
 }
 
-void	free_map(t_tools *map)
+void	free_map(t_tools *map) //NEED TO BE EDITED
 {
 	int i;
 
