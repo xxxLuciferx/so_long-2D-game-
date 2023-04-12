@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:35:38 by khaimer           #+#    #+#             */
-/*   Updated: 2023/04/10 22:53:43 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/04/12 18:21:53 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	check_map(t_tools *map)
 		}
 		i++;
 	}
+	
 	map->coin_checker = map->coin;
 	if(map->player != 1 || map->coin < 1 || map->exit != 1)
 		free_map(map);
