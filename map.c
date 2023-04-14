@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 21:10:06 by khaimer           #+#    #+#             */
-/*   Updated: 2023/04/14 20:33:42 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/04/14 21:53:27 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ int	valid_path(t_tools *map, int y, int x)
 		valid_path_recursive(map, y, x);
 	}
 	if (map->tab[y][x] == 'E')
+	{
+		map->tab[y][x] = '1';
 		map->exit--;
+	}
 	else if (map->tab[y][x] == '0')
 	{
 		map->tab[y][x] = '1';

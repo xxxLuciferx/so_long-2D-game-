@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:40:19 by khaimer           #+#    #+#             */
-/*   Updated: 2023/04/14 20:43:55 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/04/14 21:12:39 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define LIBRARY_H
 
 # include <unistd.h>
-# include <stdio.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <mlx.h>
