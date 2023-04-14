@@ -6,13 +6,13 @@
 #    By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/27 14:59:32 by khaimer           #+#    #+#              #
-#    Updated: 2023/04/13 01:44:10 by khaimer          ###   ########.fr        #
+#    Updated: 2023/04/14 20:27:28 by khaimer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRC = get_next_line.c get_next_line_utils.c so_long.c ft_split.c map.c tools.c key_codes.c
+SRC = get_next_line.c get_next_line_utils.c so_long.c ft_split.c map.c tools.c key_codes.c map_checker.c
 
 CFLAGS = -Wall -Wextra -Werror -Imlx
 

@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:35:38 by khaimer           #+#    #+#             */
-/*   Updated: 2023/04/14 20:05:47 by khaimer          ###   ########.fr       */
+/*   Updated: 2023/04/14 20:37:43 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,16 @@ int	manage_keybord(int keycode, t_tools *map)
 void	graphic(t_tools *map)
 {
 	map->mlx = mlx_init();
-	map->mlx_win =
-		mlx_new_window(map->mlx, math(map->length), math(map->line), "so_long");
-	map->img_coin = mlx_xpm_file_to_image(map->mlx,
-											"maps/coin.xpm",
-											&map->img_width,
-											&map->img_height);
-	map->img_wall = mlx_xpm_file_to_image(map->mlx,
-											"maps/wall.xpm",
-											&map->img_width,
-											&map->img_height);
-	map->img_exit = mlx_xpm_file_to_image(map->mlx,
-											"maps/exit.xpm",
-											&map->img_width,
-											&map->img_height);
-	map->img_player =
-		mlx_xpm_file_to_image(map->mlx,
-								"maps/player_right.xpm",
-								&map->img_width,
-								&map->img_height);
+	map->mlx_win = mlx_new_window(map->mlx, \
+	math(map->length), math(map->line), "so_long");
+	map->img_coin = mlx_xpm_file_to_image(map->mlx, \
+	"maps/coin.xpm", &map->img_width, &map->img_height);
+	map->img_wall = mlx_xpm_file_to_image(map->mlx, \
+	"maps/wall.xpm", &map->img_width, &map->img_height);
+	map->img_exit = mlx_xpm_file_to_image(map->mlx, \
+	"maps/exit.xpm", &map->img_width, &map->img_height);
+	map->img_player = mlx_xpm_file_to_image(map->mlx, \
+	"maps/player_right.xpm", &map->img_width, &map->img_height);
 	put_game(map);
 	mlx_key_hook(map->mlx_win, &manage_keybord, map);
 	mlx_hook(map->mlx_win, 17, 0, &window_close, map);
@@ -100,7 +91,7 @@ int	main(int argc, char **argv)
 	map = ft_calloc(1, sizeof(t_tools));
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0 || !map)
-		exit(1);
+		return (0);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -108,9 +99,9 @@ int	main(int argc, char **argv)
 			free_map(map);
 		map->str = ft_strjoin(map->str, line);
 		map->str = ft_strjoin(map->str, " ");
-		free(line);
 		if (!line)
 			break ;
+		free(line);
 		map->line++;
 	}
 	map->tab = ft_split(map->str, ' ');
