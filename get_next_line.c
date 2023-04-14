@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "library.h"
 
 char	*invalid_fd(char *string, char **static_string)
@@ -40,10 +39,10 @@ char	*get_next_line(int fd)
 		if (ft_strchr(string, '\n'))
 			break ;
 	}
-	free (string);
+	free(string);
 	string = get_first(static_string);
 	pointer = static_string;
 	static_string = get_last(static_string);
-	free (pointer);
+	free(pointer);
 	return (string);
 }

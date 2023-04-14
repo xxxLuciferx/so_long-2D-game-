@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "library.h"
 
 static size_t	count_strings(const char *str, char c)
@@ -64,8 +63,8 @@ static char	*fill_string(const char *str, char c)
 
 char	**ft_split(char const *s, char c)
 {
-	char		**strings;
-	size_t		i;
+	char	**strings;
+	size_t	i;
 
 	i = 0;
 	strings = (char **)malloc(sizeof(char *) * (count_strings(s, c) + 1));
